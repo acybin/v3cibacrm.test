@@ -1,0 +1,81 @@
+<div id="dashboard_offers">
+    {% if (datas.parent) %}
+        <h3>
+            <a href="#" data-parent="{{ datas.parent }}" class="act"><i class="fa fa-arrow-left"></i></a>
+            Оффер "{{ datas.parent_name }}"
+        </h3>  
+    {% else %}
+        <h3>
+            Все офферы
+        </h3>     
+    {% endif %}
+    {% for value in datas.offers %}
+        <div class="offers mb20">
+            
+            <p class="title">
+                
+                {% if value.flag == 'МП' %}
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="Мало партнеров"></i>
+                {% endif %}
+                
+                {% if value.flag == 'МЛ' %}
+                    <i class="fa fa-exclamation-triangle yellow" aria-hidden="true" data-toggle="tooltip" title="Мало лидов"></i>
+                {% endif %}
+            
+                {{ value.name }}
+            </p>
+            
+            <p class="line">
+            
+                <span class="nameline">Всего лидов:</span> <span class="result">{{ value.count|number_format(0, '.', ' ') }}</span>
+                
+                {% set prev = value.prev.count %}
+                {% if (value.count > prev) %}
+                    <sup class="before_result green">+{{ (value.count - prev)|number_format(0, '.', ' ') }}</sup>
+                {% else %}
+                    <sup class="before_result danger">{{ (value.count - prev)|number_format(0, '.', ' ') }}</sup>
+                {% endif %}
+            </p>
+            
+            <p class="line">
+                <span class="nameline">Продано:</span> <span class="result">{{ value.expense|number_format(0, '.', ' ') }}</span>
+                
+                {% set prev = value.prev.expense %}
+                {% if (value.expense > prev) %}
+                    <sup class="before_result green">+{{ (value.expense - prev)|number_format(0, '.', ' ') }}</sup>
+                {% else %}
+                    <sup class="before_result danger">{{ (value.expense - prev)|number_format(0, '.', ' ') }}</sup>
+                {% endif %} 
+                
+                <span class="pull-right grey small">{{ value.procent|number_format(2, '.', ' ') }}%</span>
+            </p>
+            
+            <p class="line">
+                <span class="nameline">Стоимость:</span> <span class="result">{{ value.sold|number_format(0, '.', ' ') }}</span>
+                
+                {% set prev = value.prev.sold %}
+                {% if (value.sold > prev) %}
+                    <sup class="before_result green">+{{ (value.sold - prev)|number_format(0, '.', ' ') }}</sup>
+                {% else %}
+                    <sup class="before_result danger">{{ (value.sold - prev)|number_format(0, '.', ' ') }}</sup>
+                {% endif %} 
+            </p>        
+                  
+            <p class="line">
+                <span class="nameline">Партнеров:</span> <span class="result">{{ value.partner|number_format(0, '.', ' ') }}</span>
+                
+                <span class="grey small">({{ value.deal|number_format(0, '.', ' ') }})</span>
+            </p>
+            
+            <p class="line"><span class="nameline">На балансе:</span> <span class="result">{{ value.balance|number_format(0, '.', ' ') }}</span></p>
+            
+            {% if value.children %}
+                <a href="#" class="btn btn-primary btn-sm" data-parent="{{ value.id }}">Подофферы ({{ value.children }})</a>
+            {% else %}
+                <button disabled class="btn btn-default btn-sm">Подофферы ({{ value.children }})</button>
+            {% endif %}
+     
+        </div>
+    {% endfor %}    
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,55 @@
+<div class="open">
+    <div class="dropdown-menu dropdown-menu-right noclose" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-block dropdown-bg">
+            <label class="line-order_name mb10" style="margin-left: 15px;">Кампании</label>
+            <table id="datatable_campaigns" class="table list-order list-order_table mb20 table-responsive">
+                <thead>
+                    <tr>
+                        <th class="line-order_name">id</th>
+                        <th class="line-order_name">Название</th>
+                        <th class="line-order_name">Теги</th>
+                        <th class="line-order_name">Подисточник</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for n, campaign in campaigns %}
+                    <tr class="list-order_item grey">
+                        {% if campaign.active == 0 %}
+                            {# <td>{{ n + 1 }}</td> #}
+                            <td>{{ campaign.id }}</td>
+                            <td name='name' data-original='{{ campaign.name }}'>{{ campaign.name }}</td>
+                            <td name="tags">
+                                <div class="sub_cell">
+                                    {% for i, tag in campaign.tags %}
+                                        <span class="label label-grey" tag-id="{{ tag.tag_id }}" tag-name="{{ tag.tag_name }}">{{ tag.text }}</span>&nbsp;
+                                    {% endfor %}
+                                </div>
+                            </td>
+                            <td name='subsource' data-original='{{ campaign.subsource }}'>{{ campaign.subsource }}</td>
+                        {% else %}
+                            {# <td class="disabled">{{ n + 1 }}</td> #}
+                            <td class="disabled">{{ campaign.id }}</td>
+                            <td class="disabled" name='name' data-original='{{ campaign.name }}'>{{ campaign.name }}</td>
+                            <td name="tags">
+                                <div class="sub_cell">
+                                    {% for i, tag in campaign.tags %}
+                                        <span class="label label-grey" tag-id="{{ tag.tag_id }}" tag-name="{{ tag.tag_name }}">{{ tag.text }}</span>&nbsp;
+                                    {% endfor %}
+                                </div>
+                            </td>
+                            <td class="disabled" name='subsource' data-original='{{ campaign.subsource }}'>{{ campaign.subsource }}</td>
+                        {% endif %}                        
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <div class="row">
+                <!--<div class="col-sm-4 left"><a class="add-sub btn btn-sm btn-primary" href="#">добавить</a></div>
+                <div class="col-sm-4 center"><a class="save-sub btn btn-sm btn-target" href="#">применить</a></div>-->
+                <div class="col-sm-12 right"><a class="js-close btn btn-sm btn-outline" href="#">закрыть</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+

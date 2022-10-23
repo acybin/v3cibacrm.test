@@ -1,0 +1,277 @@
+<div id="table_dashboard_setkas">
+    <p class="text-right">
+        <a href="#" class="js-interval" data-interval_value="{{ (datas.interval_value + 1) }}"><i class="fa fa-arrow-circle-left"></i></a>
+        <span class="small-text">{{ datas.prev.datepicker }}</span>
+        <a href="#" class="js-interval" data-interval_value="{{ (datas.interval_value - 1) }}"><i class="fa fa-arrow-circle-right"></i></a>
+        <input type="hidden" name="interval_value" value="{{ datas.interval_value }}"/>
+    </p>
+    <table class="list-order list-order_table table-hover table">
+        <thead>
+        <tr>
+            {% for n, th in datas.ths %}
+                {% if (n == datas.order_column) %}
+                    {% if (datas.order_dir == 0) %}
+                        <th class="line-order_name sorting_asc">{{ th }}</th>    
+                    {% else %}
+                        <th class="line-order_name sorting_desc">{{ th }}</th>    
+                    {% endif %}
+                {% else %}
+                    <th class="line-order_name">{{ th }}</th>    
+                {% endif %}
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="list-order_item">
+            <td><strong>Сумма</strong></th>
+            <td>
+                <strong>{{ datas.count|number_format(0, '.', ' ') }}</strong>
+                {% set prev = datas.prev.count %}
+                {% if (datas.count > prev) %}
+                    <span class="small green">
+                        {% if (datas.pr) %}
+                            {% if (prev == 0) %}
+                                0%
+                            {% else %}
+                                +{{ ((datas.count - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}  
+                        {% else %}
+                            +{{ (datas.count - prev)|number_format(0, '.', ' ') }}
+                        {% endif %}
+                    </span>
+                {% else %}
+                    <span class="small red">
+                        {% if (datas.pr) %}
+                            {% if (prev == 0) %}
+                                0%
+                            {% else %}
+                                {{ ((datas.count - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}  
+                        {% else %}
+                            {{ (datas.count - prev)|number_format(0, '.', ' ') }}
+                        {% endif %}
+                    </span>
+                {% endif %} 
+                <span class="small-text">({{ prev|number_format(0, '.', ' ') }})</span>
+            </td>
+            <td>
+                <strong>{{ datas.sold|number_format(0, '.', ' ') }}</strong>
+                {% set prev = datas.prev.sold %}
+                {% if (datas.sold > prev) %}
+                    <span class="small green">
+                        {% if (datas.pr) %}
+                            {% if (prev == 0) %}
+                                0%
+                            {% else %}
+                                +{{ ((datas.sold - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}  
+                        {% else %}
+                            +{{ (datas.sold - prev)|number_format(0, '.', ' ') }}
+                        {% endif %} 
+                    </span>
+                {% else %}
+                    <span class="small red">
+                        {% if (datas.pr) %}
+                            {% if (prev == 0) %}
+                                0%
+                            {% else %}
+                                {{ ((datas.sold - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}  
+                        {% else %}
+                            {{ (datas.sold - prev)|number_format(0, '.', ' ') }}
+                        {% endif %}
+                    </span>
+                {% endif %} 
+                <span class="small-text">({{ prev|number_format(0, '.', ' ') }})</span>
+            </td>
+            <td>
+                <strong>{{ datas.procent|number_format(2, '.', ' ') }}%</strong>
+                {% set prev = datas.prev.procent %}
+                {% if (datas.procent > prev) %}
+                    <span class="small green">
+                        {% if (datas.pr) %}
+                            {% if (prev == 0) %}
+                                0%
+                            {% else %}
+                                +{{ ((datas.procent - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}  
+                        {% else %}
+                            +{{ ((datas.procent - prev)|round(2, 'common'))|number_format(2, '.', ' ') }}%
+                        {% endif %}    
+                    </span>
+                {% else %}
+                    <span class="small red">
+                        {% if (datas.pr) %}
+                            {% if (prev == 0) %}
+                                0%
+                            {% else %}
+                                {{ ((datas.procent - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}  
+                        {% else %}
+                            {{ ((datas.procent - prev)|round(2, 'common'))|number_format(2, '.', ' ') }}%
+                        {% endif %}
+                    </span>
+                {% endif %} 
+                <span class="small-text">({{ prev|number_format(2, '.', ' ') }}%)</span>               
+            </td>
+            <td>
+                <strong>{{ datas.merge|number_format(0, '.', ' ') }}</strong>
+                {% set prev = datas.prev.merge %}
+                {% if (datas.merge > prev) %}
+                    <span class="small green">
+                        {% if (datas.pr) %}
+                            {% if (prev == 0) %}
+                                0%
+                            {% else %}
+                                +{{ ((datas.merge - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}  
+                        {% else %}
+                            +{{ (datas.merge - prev)|number_format(0, '.', ' ') }}
+                        {% endif %}
+                    </span>
+                {% else %}
+                    <span class="small red">
+                        {% if (datas.pr) %}
+                            {% if (prev == 0) %}
+                                0%
+                            {% else %}
+                                {{ ((datas.merge - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}  
+                        {% else %}
+                            {{ (datas.merge - prev)|number_format(0, '.', ' ') }}
+                        {% endif %}
+                    </span>
+                {% endif %} 
+                <span class="small-text">({{ prev|number_format(0, '.', ' ') }})</span>                
+            </td>
+        </tr>
+        {% for n, value in datas.setkas %}
+            <tr class="list-order_item">
+                <td><strong>{{ value.name }}</strong></td>
+                <td>
+                    <strong>{{ value.count|number_format(0, '.', ' ')  }}</strong>
+                    {% set prev = datas.prev.setkas[n].count %}
+                    {% if (value.count > prev) %}
+                        <span class="small green">
+                            {% if (datas.pr) %}
+                                 {% if (prev == 0) %}
+                                    0%
+                                 {% else %}
+                                    +{{ ((value.count - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                                 {% endif %}
+                            {% else %}
+                                +{{ (value.count - prev)|number_format(0, '.', ' ') }}
+                            {% endif %}
+                        </span>
+                    {% else %}
+                        <span class="small red">
+                            {% if (datas.pr) %}
+                                {% if (prev == 0) %}
+                                    0%
+                                {% else %}
+                                    {{ ((value.count - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                                {% endif %}
+                            {% else %}
+                                {{ (value.count - prev)|number_format(0, '.', ' ') }}
+                            {% endif %}
+                        </span>
+                    {% endif %} 
+                    <span class="small-text">({{ prev|number_format(0, '.', ' ') }})</span>
+                </td>
+                <td>
+                    <strong>{{ value.sold|number_format(0, '.', ' ') }}</strong>
+                    {% set prev = datas.prev.setkas[n].sold %}
+                    {% if (value.sold > prev) %}
+                        <span class="small green">
+                            {% if (datas.pr) %}
+                                {% if (prev == 0) %}
+                                    0%
+                                {% else %}
+                                    +{{ ((value.sold - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                                {% endif %}
+                            {% else %}
+                                +{{ (value.sold - prev)|number_format(0, '.', ' ') }}
+                            {% endif %}
+                        </span>
+                    {% else %}
+                        <span class="small red">
+                            {% if (datas.pr) %}
+                                {% if (prev == 0) %}
+                                    0%
+                                {% else %}
+                                    {{ ((value.sold - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                                {% endif %}
+                            {% else %}
+                                {{ (value.sold - prev)|number_format(0, '.', ' ') }}
+                            {% endif %}
+                        </span>
+                    {% endif %} 
+                    <span class="small-text">({{ prev|number_format(0, '.', ' ') }})</span>
+                </td>
+                <td>
+                    <strong>{{ value.procent|number_format(2, '.', ' ') }}%</strong>
+                    {% set prev = datas.prev.setkas[n].procent %}
+                    {% if (value.procent > prev) %}
+                        <span class="small green">
+                            {% if (datas.pr) %}
+                                {% if (prev == 0) %}
+                                    0%
+                                {% else %}
+                                    +{{ ((value.procent - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                                {% endif %}
+                            {% else %}
+                                +{{ ((value.procent - prev)|round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}
+                        </span>
+                    {% else %}
+                        <span class="small red">
+                            {% if (datas.pr) %}
+                                {% if (prev == 0) %}
+                                    0%
+                                {% else %}
+                                    {{ ((value.procent - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                                {% endif %}
+                            {% else %}
+                                {{ ((value.procent - prev)|round(2, 'common'))|number_format(2, '.', ' ') }}%
+                            {% endif %}
+                        </span>
+                    {% endif %} 
+                    <span class="small-text">({{ prev|number_format(2, '.', ' ') }}%)</span>
+                </td>                
+                <td>
+                    <strong>{{ value.merge|number_format(0, '.', ' ') }}</strong>
+                    {% set prev = datas.prev.setkas[n].merge %}
+                    {% if (value.merge > prev) %}
+                        <span class="small green">
+                            {% if (datas.pr) %}
+                                {% if (prev == 0) %}
+                                    0%
+                                {% else %}
+                                    +{{ ((value.merge - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                                {% endif %}   
+                            {% else %}
+                                +{{ (value.merge - prev)|number_format(0, '.', ' ') }}
+                            {% endif %}
+                        </span>
+                    {% else %}
+                        <span class="small red">
+                            {% if (datas.pr) %}
+                                {% if (prev == 0) %}
+                                    0%
+                                {% else %}
+                                    {{ ((value.merge - prev) / prev * 100 |round(2, 'common'))|number_format(2, '.', ' ') }}%
+                                {% endif %}
+                            {% else %}
+                                {{ (value.merge - prev)|number_format(0, '.', ' ') }}
+                            {% endif %}
+                        </span>
+                    {% endif %} 
+                    <span class="small-text">({{ prev|number_format(0, '.', ' ') }})</span>
+                </td>
+            </tr>
+        {% endfor %}            
+        </tbody>
+    </table>
+    <input type="hidden" name="order_dir" value="{{ datas.order_dir }}"/>
+    <input type="hidden" name="order_column" value="{{ datas.order_column }}"/>
+</div>

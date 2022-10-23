@@ -1,0 +1,32 @@
+<div class='row'>
+    <div class='col-xs-8'>
+       {{ filters|raw }}
+    </div>
+    <div class='col-xs-4'>
+        <label class="label_checkbox pull-right mt10 mr10">
+            <div id="no_partner" class="icheckbox_flat-red" value="0"></div>
+            Мало партнеров
+        </label>    
+        <label class="label_checkbox pull-right mt10 mr10">
+            <div id="no_lid" class="icheckbox_flat-orange" value="0"></div>
+            Мало лидов
+        </label>         
+    </div>
+</div>
+
+<br>
+
+<div class="col-xs-12">
+    <div id="dash_offer_block" class="block mb20 pt10">
+        <div id='filter_tags' class='col-xs-12 row mb15 zero-padd ml15'>
+            <div id="empty_tag" style="margin-top: 30px;"></div>
+            <div id='tags_menu' hidden='true'></div>
+        </div>
+        <button class="btn btn-default" id="cancel_filter" type="button">Сброс&nbsp;<i class="fa fa-times fa-2" aria-hidden="true"></i></button>
+        
+        <div id="dashboard_offers">
+        </div>
+        <p id="load">Идет загрузка...</p>
+       
+    </div>
+</div>

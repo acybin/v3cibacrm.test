@@ -1,0 +1,39 @@
+<div class="col-xs-12" id="body_dashboard_setkas">
+    <div class="block mb20">
+         <div class="row mb20">        
+            <div class='col-xs-12'>
+                <div class='col-xs-5'>
+                    <div id="div_channel" class='col-xs-3 maxcontent zero-padd mr10'>
+                        {#<label class="line-order_name">Каналы</label>#}
+                        <select class="selectpicker2" multiple>
+                            {% for n, channel in channels %}
+                                <option value="{{ n }}">{{ channel }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class='col-xs-3 maxcontent zero-padd'>
+                        <label class='label_checkbox div_label_checkbox'>
+                            <div id='procent' class='icheckbox_flat-green'></div>
+                            %
+                        </label>
+                    </div>
+                </div>        
+                <div class="col-xs-7">
+                    <div id='div_calc_analytics' class="col-xs-1 maxcontent zero-padd pull-right">
+                        <button class="btn btn-target" id="calc_analytics" type="button">Расчет&nbsp;<i class="fa fa-line-chart fa-2" aria-hidden="true"></i></button>
+                    </div>
+                    <div id="div_datepicker" class='col-xs-3 maxcontent zero-padd pull-right mr10'>
+                        {{ datepicker|raw }}
+                    </div>
+                </div>
+            </div>       
+        </div>
+        <div class="row">
+            <div class='col-sm-12'>
+                <div id="table_dashboard_setkas">
+                </div>
+                <p id="dashboard_load">Идет загрузка...</p>
+            </div>
+        </div>   
+    </div>
+</div>

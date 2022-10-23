@@ -1,0 +1,83 @@
+<div id="openAnalytics" class="wrapper modal fade in bs-example-modal-lg">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Номер {{ charts.name }}</h3>
+                <button id="close_analytics" class="close" type="button" data-dismiss="modal"></button>                
+            </div>
+            <div class="modal-body" id="body_analytics">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Инфо</h4>
+                        <table class="table table-condensed">
+                            <tbody>
+                                <tr><td data-mango_id="{{ charts.id }}">ID</td><td>{{ charts.id }}</td></tr>
+                                <tr><td>Тип</td><td>{{ charts.type }}</td></tr>
+                                <tr><td>Сценарий</td><td>{{ charts.scenario }}</td></tr>
+                                <tr><td>Дата активации</td><td>{{ charts.activation }}</td></tr>
+                                <tr><td>Источник</td><td>{{ charts.subnls_source }}</td></tr>
+                                <tr><td>Регион</td><td>{{ charts.regions }}</td></tr>
+                                <tr><td>Канал</td><td>{{ charts.channels }}</td></tr>
+                                <tr><td>Период</td><td>{{ charts.datepicker }}</td></tr>
+                                <tr><td>Лиды</td><td>{{ charts.count }}</td></tr>
+                                <tr><td>Продано</td><td>{{ charts.sold }}</td></tr>
+                                <tr><td>Процент</td><td>{{ charts.procent }}</td></tr>
+                                <tr><td>Доход</td><td>{{ charts.expense }}</td></tr>                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Маркер</h4>
+                        <table class="table table-condensed table-chart">
+                            <tbody>                             
+                             {% set i = 0 %} 
+                             {% for n, new_nyk in charts.new_nyks %}
+                                {% if new_nyk.active %}
+                                    <tr class="success js-tag-filter" data-tags="{{ new_nyk.tag }}"><td>{{ new_nyk.name }}</td><td>{{ new_nyk.count }}</td><td>{{ new_nyk.procent }}</td></tr>
+                                {% else %}
+                                    <tr class="js-tag-filter" data-tags="{{ new_nyk.tag }}"><td>{{ new_nyk.name }}</td><td>{{ new_nyk.count }}</td><td>{{ new_nyk.procent }}</td></tr>
+                                {% endif %}
+                             {% endfor %}
+                             </tbody>
+                        </table>
+                    </div>
+                    {% for n, tag in charts.tags %}
+                        <div class="col-md-6">
+                            <h4>{{ n }}</h4>
+                            <table class="table table-condensed table-chart">
+                                <tbody>                             
+                                 {% set i = 0 %} 
+                                 {% for n, array in tag %}
+                                    {% if array.active %}
+                                        <tr class="success js-tag-filter" data-tags="{{ array.tag }}"><td>{{ array.name }}</a></td><td>{{ array.count }}</td><td>{{ array.procent }}</td></tr>
+                                    {% else %}
+                                        <tr class="js-tag-filter" data-tags="{{ array.tag }}"><td>{{ array.name }}</a></td><td>{{ array.count }}</td><td>{{ array.procent }}</td></tr>
+                                    {% endif %}
+                                 {% endfor %}
+                                 </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-6">
+                         <h4>Город</h4>
+                         <table class="table table-condensed table-chart">
+                            <tbody>                             
+                             {% set i = 0 %} 
+                             {% for n, place in charts.places %}
+                                {% if place.active %}
+                                    <tr class="success js-tag-filter" data-tags="{{ place.tag }}"><td>{{ place.name }}</td><td>{{ place.count }}</td><td>{{ place.procent }}</td></tr>
+                                {% else %}
+                                    <tr class="js-tag-filter" data-tags="{{ place.tag }}"><td>{{ place.name }}</td><td>{{ place.count }}</td><td>{{ place.procent }}</td></tr>
+                                {% endif %}
+                             {% endfor %}
+                             </tbody>
+                        </table>                         
+                    </div>                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>

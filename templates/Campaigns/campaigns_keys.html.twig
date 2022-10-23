@@ -1,0 +1,40 @@
+<div class="open">
+    <div class="dropdown-menu dropdown-menu-right noclose" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-block dropdown-bg">
+            <label class="line-order_name mb10" style="margin-left: 15px;">Ключи</label>
+            <table id="datatable_keys" class="table list-order list-order_table mb20 table-responsive">
+                <thead>
+                    <tr>
+                        <th class="line-order_name">id</th>
+                        <th class="line-order_name">Ключ</th>
+                        <th class="line-order_name">Теги</th>
+                        <th class="line-order_name">Маркер</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for n, key in keys %}
+                    <tr class="list-order_item grey">
+                        <td>{{ key.id }}</td>
+                        <td name='name' data-original='{{ key.name }}'>{{ key.name }}</td>
+                        <td name="tags">
+                            <div class="sub_cell">
+                                {% for i, tag in key.tags %}
+                                    <span class="label label-grey" tag-id="{{ tag.tag_id }}" tag-name="{{ tag.tag_name }}">{{ tag.text }}</span>&nbsp;
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td name='marker' data-original='{{ key.marker }}'>{{ key.marker }}</td>                                      
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <div class="row">
+                <!--<div class="col-sm-4 left"><a class="add-sub btn btn-sm btn-primary" href="#">добавить</a></div>
+                <div class="col-sm-4 center"><a class="save-sub btn btn-sm btn-target" href="#">применить</a></div>-->
+                <div class="col-sm-12 right"><a class="js-close btn btn-sm btn-outline" href="#">закрыть</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,99 @@
+<div class='row'>
+    <div class='col-xs-8'>
+        {{ filters|raw }}
+    </div>
+    <div class='col-xs-4'>
+        <label class="label_checkbox pull-right mt10 mr10">
+            <div id="no_scenario" class="icheckbox_flat-orange" value="0"></div>
+            Нет сценария
+        </label>
+        <label class="label_checkbox pull-right mt10 mr10">
+            <div id="dt_filt_red" class="icheckbox_flat-red" value="0"></div>
+            Нет в UIS
+        </label>        
+        <label class="label_checkbox pull-right mt10 mr10">
+            <div id="dt_filt_yellow" class="icheckbox_flat-orange" value="0"></div>
+            Нет в БД
+        </label>    
+        <label class="label_checkbox pull-right mt10 mr10">
+            <div id="dt_filt_blue" class="icheckbox_flat-blue" value="0"></div>
+            Нет лидов
+        </label>
+    </div>
+</div>
+
+<br>
+
+<div class="col-xs-12" id="body_mangos">
+    <div id="mango_block" class="block mb20 pt10">        
+        <div id='filter_tags' class='col-xs-12 row mb15 zero-padd ml15'>
+            <div id="empty_tag" style="margin-top: 30px;"></div>
+            <div id='tags_menu' hidden='true'></div>
+        </div> 
+        <button class="btn btn-default" id="cancel_filter" type="button">Сброс&nbsp;<i class="fa fa-times fa-2" aria-hidden="true"></i></button>
+        <!--<div id="tag_info" class="ml10"><i class="fa fa-info-circle" aria-hidden="true" style="color : #337ab7;"></i></div>--> 
+        <div class="row mb20">
+            <div class='col-xs-12'>
+                <div class='col-xs-5'>
+					<div id="div_type" class='col-xs-2 maxcontent zero-padd mr10'>                        
+                        <select id="type" class="form-control">    
+                        	<option value='-1' selected="selected">Любой тип</option>                        
+                            <option value='0'>Статика</option>
+                            <option value='1'>Динамика</option> 
+                            <option value='2'>Нави</option>
+                            <option value='3'>Служебный</option>                           
+                        </select>
+                    </div>                                        
+                    <div id='div_refresh_uis' class="col-xs-1 maxcontent zero-padd">
+                        <a class="btn btn-target" id="refresh_uis" type="button">Обновить UIS&nbsp;<i class="fa fa-refresh fa-2" aria-hidden="true"></i></a>
+                    </div> 
+                </div>
+                <div class="col-xs-7">
+                	<div id='div_export_mangos' class="col-xs-1 maxcontent zero-padd pull-right">
+                        <a class="btn btn-primary" id="export_mangos" type="button">Выгрузить&nbsp;<i class="fa fa-download fa-2" aria-hidden="true"></i></a>
+                    </div>
+                    <div id='div_calc_analytics' class="col-xs-1 maxcontent zero-padd pull-right">
+                        <button class="btn btn-target" id="calc_analytics" type="button">Расчет&nbsp;<i class="fa fa-line-chart fa-2" aria-hidden="true"></i></button>
+                    </div>
+                    <div id="div_datepicker" class='col-xs-3 maxcontent zero-padd pull-right mr10'>
+                        {{ datepicker|raw }}
+                    </div>
+                    <div id="div_channel" class='col-xs-2 maxcontent zero-padd pull-right mr10'>                        
+                        <select id="channel" class="form-control">
+                            <option value='-1' selected="selected">Любой канал</option>
+                            {% for n, channel in channels %}
+                                <option value="{{ n }}">{{ channel }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="div_status" class='col-xs-2 maxcontent zero-padd pull-right mr10'>                        
+                        <select id="status" class="form-control">
+                            <option value='-1' selected="selected">Любой статус</option>
+                            <option value='0'>Источник активен</option>
+                            <option value='1'>Источник не активен</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table id="mango_table" class="list-order list-order_table mb20 table-hover table mb20 table-responsive">
+            <thead>
+                <tr>
+                    <th class="line-order_name">id</th>
+                    <th class="line-order_name">Номер</th>
+                    <th class="line-order_name">Тип</th> 
+                    <th class="line-order_name">Сценарий</th>
+                    <th class="line-order_name">Дата активации</th>       
+                    <th class="line-order_name">Источник</th>
+                    <th class="line-order_name">Сетка</th>
+                    <th class="line-order_name">Регион</th>
+                    <th class="line-order_name">Канал</th>
+                    <th class="line-order_name">Лидов</th>
+                    <th class="line-order_name">Продано</th>
+                    <th class="line-order_name">Доход</th>
+                    <th class="line-order_name no-sort"></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

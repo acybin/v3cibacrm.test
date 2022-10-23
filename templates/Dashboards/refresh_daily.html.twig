@@ -1,0 +1,49 @@
+<div id="table_dashboard_daily">
+    <table class="list-order list-order_table table-hover table">
+        <thead>
+        <tr>
+            <th class="line-order_name">Дата</th>
+            <th class="line-order_name">SEO</th>  
+            <th class="line-order_name">YD</th>  
+            <th class="line-order_name">Без канала</th>
+            <th class="line-order_name">GA + VK + MT</th>
+            <th class="line-order_name">Всего</th>
+            {% if (datas.type == 2) %}
+                <th class="line-order_name">Ср лида</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for n, value in datas.data %}
+            <tr class="list-order_item">
+            {% for nn, vv in value %}
+            {% set class_name = datas.class[n][nn] %}
+            {% set bck = datas.bck[n][nn] %}
+            <td
+             {% if bck %}
+              style="background: {{ bck }}"
+             {% endif %}
+            >
+                
+                {% if class_name %}
+                    <span class="{{ class_name }}">
+                {% endif %}
+                
+                {% if (nn >= 1) %}
+                    {% if (datas.type == 0 or datas.type == 1 or datas.type == 2) %}
+                        {{ vv|number_format(0, '.', ' ') }}
+                    {% endif %}
+                {% else %}
+                    {{ vv }}
+                {% endif %}
+                
+                {% if class_name %}
+                    </span>
+                {% endif %}
+                            
+            </td>
+            {% endfor %}
+            </tr>
+        {% endfor %}   
+    </table>
+</div>

@@ -1,0 +1,30 @@
+<div class="col-xs-9" id="body_dashboard_daily">
+    <div class="block mb20">
+         <div class="row mb20">        
+            <div class='col-xs-12'>
+                <div class='col-xs-5'>
+                    <div id="div_type" class='col-xs-3 maxcontent zero-padd mr10'>
+                        <select id="type" class="form-control">   
+                            <option value='2' selected="selected">маржа</option>
+                        	<option value='0'>лиды</option>                        
+                            <option value='1'>продано</option>                         
+                        </select>
+                    </div>
+                </div>        
+                <div class="col-xs-7">
+                    <div id='div_calc_analytics_daily' class="col-xs-1 maxcontent zero-padd pull-right">
+                        <button class="btn btn-target" id="calc_analytics_daily" type="button">Расчет <i class="fa fa-line-chart fa-2" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>       
+        </div>
+        <div class="row">
+            <div class='col-sm-12'>
+                <div id="table_dashboard_daily">
+                </div>
+                <p id="dashboard_daily_load">Идет загрузка...</p>
+                <button class="btn btn-default btn-sm" id="clear_cache" type="button">Очистить кэш&nbsp;<i class="fa fa-trash-o fa-2" aria-hidden="true"></i></button>
+            </div>
+        </div>   
+    </div>
+</div>
